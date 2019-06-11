@@ -292,8 +292,9 @@ limitations under the License.
 
       <div class="options purchase">
         <!-- TODO: "Conditionally enabled button" -->
-        <input type="submit" value="ADD TO CART"
-            class="mdl-button mdl-button--raised mdl-button--accent">
+        <input type="submit" value="ADD TO CART" disabled
+            class="mdl-button mdl-button--raised mdl-button--accent"
+            [disabled]="!selectedSize || !shirts[selected.sku].sizes[selectedSize]">
       </div>
 
       <div submit-success>
