@@ -149,7 +149,7 @@ limitations under the License.
       }
     </script>
   </amp-state>
-  <amp-state id="shirts">
+  <amp-state id="shirts" [src]="'/shirts/sizesAndPrices?sku=' + selected.sku">
       <script type="application/json">
         {
           "1001": {
@@ -253,21 +253,26 @@ limitations under the License.
         <amp-selector name="size">
           <table>
             <tr>
-              <!-- TODO: "Fetching available sizes for a shirt" -->
-              <td>
+                    <!-- If 'XS' size is available for selected SKU, return empty string.
+                   Otherwise, return 'unavailable'. -->
+              <td [class]="shirts[selected.sku].sizes['XS'] ? '' : 'unavailable'">
                 <div option="XS">XS</div>
               </td>
-              <td>
+              <td [class]="shirts[selected.sku].sizes['S'] ? '' : 'unavailable'">
                 <div option="S">S</div>
               </td>
-              <!-- TODO: "Fetching available sizes for a shirt" -->
-              <td>
+              <!-- Add the 'unavailable' class to the next three <td> elements
+                   to be consistent with the available sizes of the default SKU. -->
+              <td class="unavailable"
+                  [class]="shirts[selected.sku].sizes['M'] ? '' : 'unavailable'">
                 <div option="M">M</div>
               </td>
-              <td>
+              <td class="unavailable"
+                  [class]="shirts[selected.sku].sizes['L'] ? '' : 'unavailable'">
                 <div option="L">L</div>
               </td>
-              <td>
+              <td class="unavailable"
+                  [class]="shirts[selected.sku].sizes['XL'] ? '' : 'unavailable'">
                 <div option="XL">XL</div>
               </td>
             </tr>
